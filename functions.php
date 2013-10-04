@@ -9,6 +9,8 @@
  * @author brux <brux.romuar@gmail.com>
  */
 
+$content_width = 460;
+
 require_once TEMPLATEPATH . '/includes/QL_JSONResponse.php';
 require_once TEMPLATEPATH . '/includes/QL_Email.php';
 require_once TEMPLATEPATH . '/includes/admin.php';
@@ -197,6 +199,10 @@ function ql_admin_bar()
 }
 add_action('admin_bar_menu', 'ql_admin_bar', 75);
 
+function auto_link_text_callback($matches) {
+    return '<a href="'. $matches[0] .'">'. $matches[0] .'</a>';
+}
+
 /**
  * Automatically adds links to valid URLs in our post content.
  *
@@ -207,14 +213,8 @@ add_action('admin_bar_menu', 'ql_admin_bar', 75);
  */
 function ql_auto_link($content)
 {
-	if(!ql_is_personalizing()){
-		$pattern = "/(((http[s]?:\/\/)|(www\.))(([a-z][-a-z0-9]+\.)?[a-z][-a-z0-9]+\.[a-z]+(\.[a-z]{2,2})?)\/?[a-z0-9._\/~#&=;%+?-]+[a-z0-9\/#=?]{1,1})/is";
-		$content = preg_replace($pattern, " <a href='$1'>$1</a>", $content);
-		$content = preg_replace("/href='www/", "href='http://www", $content);
-		return $content;
-	}else
-		return $content;
-
+	$content = preg_replace_callback('/(?<=[^"]|^)(https?|ftp|file):\/\/[-a-zA-Z0-9+&@#\/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#\/%=~_|]/', 'auto_link_text_callback', $content);
+    return $content;
 }
 add_filter('the_content', 'ql_auto_link');
 
