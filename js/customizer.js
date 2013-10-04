@@ -47,6 +47,13 @@
                 <li><a href="#" title="Justify" data-value="justify">&#xf039;</a></li> \
             </ul>');
 
+        $('#customize-control-ql_content_content').append('\
+            <ul class="aligner" data-target-controls="_customize-radio-ql_content" data-to-hide="#customize-control-ql_content"> \
+                <li><a href="#" title="Align Left" data-value="left">&#xf036;</a></li> \
+                <li><a href="#" title="Align Center" data-value="center">&#xf037;</a></li> \
+                <li><a href="#" title="Align Right" data-value="right">&#xf038;</a></li> \
+                <li><a href="#" title="Justify" data-value="justify">&#xf039;</a></li> \
+            </ul>');
         $('ul.aligner').each(function(i, ul) {
             
             ul = $(this);
