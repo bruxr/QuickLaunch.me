@@ -17,5 +17,16 @@
             $('#page-content p').css('line-height', newval + 'px');
         });
     });
+
+    wp.customize('ql_background[image]', function(value) {
+        value.bind(function(newval) {
+            var data = {
+                id: 'bgchange',
+                data: newval,
+                channel: 'preview-0'
+            };
+            window.top.postMessage(JSON.stringify(data), '*');
+        });
+    });
     
 })(jQuery);

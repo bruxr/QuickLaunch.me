@@ -135,11 +135,43 @@
 
         setupSliders();
         setupAligners();
-        
-    
+
         $('.gradient-picker').gradientPicker();
+
+        // Organization
         $('#customize-control-ql_title_tagline-font').before($('#customize-control-blogname'));
         $('#customize-control-ql_title_tagline_title_color,#customize-control-ql_title_bottom_margin').after($('#customize-control-ql_title_tagline-font'));
+
+        var gradientToggle = $('#customize-control-ql_bg_gradient .gradient-toggle');
+
+        // Turning the gradient bg on will remove bg images
+        gradientToggle.on('change', function(evt) {
+            if ($(this).prop('checked')) {
+                $('#customize-control-ql_background_image .remove').trigger('click');
+            }
+        });
+
+        // If we have an existing bg image, uncheck the gradient bg.
+        if ($('#customize-control-ql_background_image .customize-image-picker img').length > 0) {
+                gradientToggle.prop('checked', false)
+                              .trigger('change');
+        }
+
+        // If the inner iframe receives a new bg image, uncheck the gradient bg.
+        $(window).on('message', function(evt) {
+            evt = evt.originalEvent;
+            var data = JSON.parse(evt.data);
+            if (data.id == 'bgchange') {
+                if (data.data != '') {
+                    gradientToggle.prop('checked', false)
+                                  .trigger('change');
+                }
+                else {
+                    gradientToggle.prop('disabled', false)
+                                  .trigger('change');
+                }
+            }
+        });
 
     });
 
