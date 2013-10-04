@@ -54,6 +54,7 @@
                 <li><a href="#" title="Align Right" data-value="right">&#xf038;</a></li> \
                 <li><a href="#" title="Justify" data-value="justify">&#xf039;</a></li> \
             </ul>');
+
         $('ul.aligner').each(function(i, ul) {
             
             ul = $(this);
@@ -135,7 +136,10 @@
         setupSliders();
         setupAligners();
         
+    
         $('.gradient-picker').gradientPicker();
+        $('#customize-control-ql_title_tagline-font').before($('#customize-control-blogname'));
+        $('#customize-control-ql_title_tagline_title_color,#customize-control-ql_title_bottom_margin').after($('#customize-control-ql_title_tagline-font'));
 
     });
 
