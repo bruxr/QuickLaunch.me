@@ -1534,19 +1534,14 @@ function ql_customize_preview() {
 			value.bind(function(to) {
 				$('#page-content').css('color', to);
 			});
+        });
 
 		// content font-family settings
 		wp.customize('ql_content[positiontext]',function( value ) {
 			value.bind(function(to) {
 				$('#page-content').css('text-align', to);
-			  
-                           
-
-
-    });
-		
-
-});
+            });
+        });
 		
 		// position
 		wp.customize('ql_layout[position]', function (value){
@@ -1773,24 +1768,11 @@ function ql_customize_preview() {
 		}
 		
 		// Content
-		
-             
-
-                wp.customize('ql_content[content]', function (value){
+        wp.customize('ql_content[content]', function (value){
 			value.bind(function(to){
 				$('#page-content').html(parseContent(to));
-			
-
-});
-
-  
-
-
-
-
-
+            });
 		});
-		
 	} )( jQuery)
 	</script>
 	<?php 
