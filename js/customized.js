@@ -28,5 +28,20 @@
             window.top.postMessage(JSON.stringify(data), '*');
         });
     });
+
+    wp.customize('ql_background[gradient]', function(value) {
+        value.bind(function(newval) {
+            
+            if (newval == 'false')
+                return;
+
+            $('body').css({
+                backgroundImage: 'url('+ tplUrl +'/images/backgrounds/'+ newval +'-gradient.jpg)',
+                backgroundSize: '100% 100%',
+                backgroundAttachment: 'scroll'
+            });
+
+        });
+    });
     
 })(jQuery);

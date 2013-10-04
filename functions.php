@@ -139,6 +139,7 @@ function ql_add_scripts()
 		
 		$vars = array(
 			'ajaxurl' => admin_url('admin-ajax.php'),
+            'siteurl' => home_url(),
 			'reg_email_nonce' => wp_create_nonce('quicklaunch-register-email')
 		);
 		wp_localize_script('ql-scripts', 'QL', $vars);
@@ -1500,7 +1501,9 @@ add_action('wp_enqueue_scripts', 'ql_enqueue_scripts');
 function ql_customize_preview() {
 	?>
 	<script type="text/javascript">
-		
+	
+        var tplUrl = '<?php echo get_template_directory_uri(); ?>';
+
 	/**
 	 * @credit http://papermashup.com/read-url-get-variables-withjavascript/
 	 */

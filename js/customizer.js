@@ -152,7 +152,7 @@
         });
 
         // If we have an existing bg image, uncheck the gradient bg.
-        if ($('#customize-control-ql_background_image .customize-image-picker img').length > 0) {
+        if ($('#customize-control-ql_background_image .customize-image-picker img').css('display') != 'none') {
                 gradientToggle.prop('checked', false)
                               .trigger('change');
         }
